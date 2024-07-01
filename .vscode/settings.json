@@ -1,0 +1,7 @@
+{
+    "editor.formatOnSave": true,
+    "notebook.defaultFormatter": "dbaeumer.vscode-eslint",
+    "notebook.formatOnSave.enabled": true,
+    "editor.formatOnPaste": true,
+    "editor.formatOnType": true
+}

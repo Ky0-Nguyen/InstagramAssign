@@ -1,0 +1,6 @@
+{
+    "name": "services",
+    "devDependencies": {
+        "@types/lodash": "^4.17.6"
+    }
+}
