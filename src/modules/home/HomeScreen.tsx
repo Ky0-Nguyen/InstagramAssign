@@ -58,7 +58,7 @@ const HomeScreen: React.FC = () => {
             <View />
           )
         }
-        refreshing={false}
+        refreshing={status === 'loading'}
         onRefresh={onRefresh}
         removeClippedSubviews
         initialNumToRender={1} // Number of items to render initially
