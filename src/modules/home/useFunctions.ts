@@ -7,12 +7,20 @@ import {AppDispatch, RootState} from 'stores/store';
 
 export const useHomeFunctions = () => {
   const dispatch = useDispatch<AppDispatch>();
+  const status: 'idle' | 'loading' | 'succeeded' | 'failed' = useSelector(
+    (state: RootState) => state.instagram.status,
+  );
   const posts: DataPost | null = useSelector(
     (state: RootState) => state.instagram.posts,
   );
-  useEffect(() => {
+
+  const onRefresh = useCallback(() => {
     dispatch(fetchPosts());
   }, [dispatch]);
+
+  useEffect(() => {
+    onRefresh();
+  }, [onRefresh]);
   const tabBarHeight = useBottomTabBarHeight();
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 
@@ -30,6 +38,8 @@ export const useHomeFunctions = () => {
   };
   return {
     posts,
+    status,
+    onRefresh,
     tabBarHeight,
     currentIndex,
     viewabilityConfig,

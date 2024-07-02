@@ -9,6 +9,8 @@ const {height} = Dimensions.get('window');
 const HomeScreen: React.FC = () => {
   const {
     posts,
+    status,
+    onRefresh,
     currentIndex,
     tabBarHeight,
     viewabilityConfig,
@@ -41,6 +43,9 @@ const HomeScreen: React.FC = () => {
         offset: (height - tabBarHeight) * index,
         index,
       })}
+      refreshing={status === 'loading'}
+      onRefresh={onRefresh}
+      onEndReachedThreshold={16}
       removeClippedSubviews
       initialNumToRender={1} // Number of items to render initially
       maxToRenderPerBatch={1} // Number of items rendered per batch
