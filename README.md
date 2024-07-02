@@ -80,4 +80,8 @@ To learn more about React Native, take a look at the following resources:
 
 # Demo
 
-[![Watch the video]](https://github.com/Ky0-Nguyen/InstagramAssign/blob/main/Demo/video-demo.mp4)
+## IOS
+
+<img src="./Demo/demo-ios.gif" alt="Your GIF">
+
+## Android
