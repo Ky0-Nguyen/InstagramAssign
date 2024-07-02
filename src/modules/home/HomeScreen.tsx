@@ -17,7 +17,6 @@ const HomeScreen: React.FC = () => {
   const {
     posts,
     status,
-    onRefresh,
     currentIndex,
     tabBarHeight,
     viewabilityConfig,
@@ -58,13 +57,12 @@ const HomeScreen: React.FC = () => {
             <View />
           )
         }
-        refreshing={status === 'loading'}
-        onRefresh={onRefresh}
+        // refreshing={status === 'loading'}
+        // onRefresh={onRefresh}
         removeClippedSubviews
         initialNumToRender={1} // Number of items to render initially
         maxToRenderPerBatch={1} // Number of items rendered per batch
         windowSize={1} // Number of windows ahead to render items
-        // snapToInterval={height - tabBarHeight}
         showsVerticalScrollIndicator={false}
         {...(Platform.OS === 'android' && {
           snapToInterval: height - tabBarHeight,

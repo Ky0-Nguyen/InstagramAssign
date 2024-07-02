@@ -82,6 +82,8 @@ To learn more about React Native, take a look at the following resources:
 
 ## IOS
 
-<img src="./Demo/demo-ios.gif" alt="Your GIF">
+<img src="./Demo/demo-ios.gif" alt="iOS GIF">
 
 ## Android
+
+<img src="./Demo/demo-android.gif" alt="Android GIF">
