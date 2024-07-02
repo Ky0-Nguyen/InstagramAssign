@@ -6,6 +6,8 @@ import {
   Image,
   FlatList,
   TouchableOpacity,
+  Platform,
+  StyleSheet,
 } from 'react-native';
 
 import styles from './styles';
@@ -66,8 +68,13 @@ const PostCard: React.FC<ReelsItemProps> = ({item: itemProps, isActive}) => {
     [],
   );
 
+  const heightContainer = Platform.select({
+    ios: {height: height - tabBarHeight},
+    android: {height: height - tabBarHeight},
+  });
+
   return (
-    <View style={[styles.container, {height: height - tabBarHeight}]}>
+    <View style={StyleSheet.flatten([styles.container, heightContainer])}>
       <Animated.View style={[styles.videoContainerThumb, animatedThumbStyle]}>
         <Image source={{uri: item?.thumbnail_url}} style={styles.imageThumb} />
       </Animated.View>

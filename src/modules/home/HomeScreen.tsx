@@ -1,5 +1,12 @@
 import React, {useCallback, useMemo} from 'react';
-import {Dimensions, FlatList, Platform} from 'react-native';
+import {
+  ActivityIndicator,
+  Dimensions,
+  FlatList,
+  Platform,
+  StyleSheet,
+  View,
+} from 'react-native';
 
 import {PostCard} from 'components';
 import {ItemPost} from 'core/types';
@@ -32,33 +39,54 @@ const HomeScreen: React.FC = () => {
   }, [posts?.items]);
 
   return (
-    <FlatList
-      data={listData}
-      renderItem={renderItem}
-      keyExtractor={(item, index) => `${item}${index}`}
-      pagingEnabled
-      horizontal={false}
-      getItemLayout={(data, index) => ({
-        length: height - tabBarHeight,
-        offset: (height - tabBarHeight) * index,
-        index,
-      })}
-      refreshing={status === 'loading'}
-      onRefresh={onRefresh}
-      onEndReachedThreshold={16}
-      removeClippedSubviews
-      initialNumToRender={1} // Number of items to render initially
-      maxToRenderPerBatch={1} // Number of items rendered per batch
-      windowSize={1} // Number of windows ahead to render items
-      showsVerticalScrollIndicator={false}
-      {...(Platform.OS === 'android' && {
-        snapToInterval: height - tabBarHeight,
-      })}
-      decelerationRate="fast"
-      onViewableItemsChanged={handleViewableItemsChanged}
-      viewabilityConfig={viewabilityConfig}
-    />
+    <View style={styles.container}>
+      <FlatList
+        data={listData}
+        renderItem={renderItem}
+        keyExtractor={(item, index) => `${item}${index}`}
+        pagingEnabled
+        horizontal={false}
+        getItemLayout={(data, index) => ({
+          length: height - tabBarHeight,
+          offset: (height - tabBarHeight) * index,
+          index,
+        })}
+        ListHeaderComponent={
+          status === 'loading' ? (
+            <ActivityIndicator size={30} color={'tomato'} />
+          ) : (
+            <View />
+          )
+        }
+        refreshing={false}
+        onRefresh={onRefresh}
+        removeClippedSubviews
+        initialNumToRender={1} // Number of items to render initially
+        maxToRenderPerBatch={1} // Number of items rendered per batch
+        windowSize={1} // Number of windows ahead to render items
+        // snapToInterval={height - tabBarHeight}
+        showsVerticalScrollIndicator={false}
+        {...(Platform.OS === 'android' && {
+          snapToInterval: height - tabBarHeight,
+        })}
+        decelerationRate="fast"
+        onViewableItemsChanged={handleViewableItemsChanged}
+        viewabilityConfig={viewabilityConfig}
+        style={styles.listContainer}
+      />
+    </View>
   );
 };
 
 export default HomeScreen;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  listContainer: {
+    flex: 1,
+    width: '100%',
+  },
+});
